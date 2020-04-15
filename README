@@ -1,0 +1,48 @@
+Enemies amount can be changed in CMap constructor. By default amount is 3.
+     
+      Controls: WASD
+      W - move up
+      A - move left
+      S - move down
+      D - move right
+      Q - quit
+      ENTER - submit turn
+     
+     
+      Game goal:
+     
+       U need to force all enemies eat to "0". If enemy will eat "0", it will turn into border(#). Player can also eat "0", it will give no effect.
+     
+     
+       # - border
+       x - enemy
+       @ - player
+       0 - enemy trap
+       $ - dead player
+     
+     
+
+     In this version u can't draw enemies or players at map. It will give no effect, but can cause some bugs. Map should contain only borders(#) and ' ' .
+     If you dont know how the game works - don't change any part of code. It can destroy everything.
+     Enemies and player will spawn automatically at the corners like this:
+      ######
+      #@  x#
+      #x  x#
+      ######
+      
+      
+      
+      You can create your own map using CMap constructor:   
+      CMap x("####################################\n"  
+             "#                                  #\n"
+             "#                   ##             #\n"
+             "#                   #0             #\n"
+             "#                   ##             #\n"
+             "#          ##                      #\n"
+             "#          0#                      #\n"
+             "#          ##         ###          #\n"
+             "#                     #0#          #\n"
+             "#                                  #\n"
+             "####################################\n");
+
+      

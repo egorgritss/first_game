@@ -11,7 +11,7 @@ Enemies amount can be changed in CMap constructor. By default amount is 3.
      
       Game goal:
      
-       U need to force all enemies eat to "0". If enemy will eat "0", it will turn into border(#). Player can also eat "0", it will give no effect.
+       You need to force all enemies to eat "0". If the enemy eats "0", it will turn into a border (#). Player can also eat "0",but it will give no effect.
      
      
        # - border

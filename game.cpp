@@ -394,42 +394,6 @@ private:
 
 int main(void) {
 
-    // x.spawnEnemy(int x, int y, int enemy_number) (where x is an instance of CMap class) - spawns an enemy number "enemy_number" in {x,y} if it's legal. !!! USING THIS METHOD YOU HAVE TO BE SURE, ENEMY WITH "enemy_number" EXISTS !!!. Leave it commented if you want to spawn enemy at default position.
-
-    /**Enemies amount can be changed in CMap constructor. By default amount is 3.
-     *
-     * Controls: WASD
-     * W - move up
-     * A - move left
-     * S - move down
-     * D - move right
-     * Q - quit
-     * ENTER - submit turn
-     *
-     *
-     * Game goal:
-     *
-     *  You need to force all enemies to eat "0". If the enemy eats "0", it will turn into a border (#). Player can also eat "0",but it will give no effect.
-     *
-     *
-     *  # - border
-     *  x - enemy
-     *  @ - player
-     *  0 - enemy trap
-     *  $ - dead player
-     *
-     * */
-
-
-    /** In this version you can't draw enemies or players at the map. It will give no effect, but can cause some bugs. 
-     *  Map should contain only borders(#) and spaces(' ').
-     * If you dont know how the game works - don't change any part of code. It can destroy everything.
-     * Enemies and player will spawn automatically at the corners like this:
-     *  ######
-     *  #@  x#
-     *  #x  x#
-     *  ######*/
-
     CMap x("####################################\n"  // U can create ur own map
            "#                                  #\n"
            "#                   ##             #\n"
@@ -441,6 +405,8 @@ int main(void) {
            "#                     #0#          #\n"
            "#                                  #\n"
            "####################################\n");
+    // x.spawnEnemy(int x, int y, int enemy_number) (where x is an instance of CMap class) - spawns an enemy number "enemy_number" in {x,y} if it's legal. !!! USING THIS METHOD YOU HAVE TO BE SURE, ENEMY WITH "enemy_number" EXISTS !!!. 
+    //Leave it commented if you want to spawn enemy at default position.
 
     /**If you'll find bugs - report it please*/
 

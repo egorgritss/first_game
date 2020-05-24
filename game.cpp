@@ -394,58 +394,6 @@ private:
 
 int main(void) {
 
-    // x.spawnEnemy(int x, int y, int enemy_number) (where x is an instance of CMap class) - spawns an enemy number "enemy_number" in {x,y} if it's legal. !!! USING THIS METHOD YOU HAVE TO BE SURE, ENEMY WITH "enemy_number" EXISTS !!!. Leave it commented if u want to spawn enemy at default position.
-
-    /**Enemies amount can be changed in CMap constructor. By default amount is 3.
-     *
-     * Controls: WASD
-     * W - move up
-     * A - move left
-     * S - move down
-     * D - move right
-     * Q - quit
-     * ENTER - submit turn
-     *
-     *
-     * Game goal:
-     *
-     *  U need to force all enemies eat to "0". If enemy will eat "0", it will turn into border(#). Player can also eat "0", it will give no effect.
-     *
-     *
-     *  # - border
-     *  x - enemy
-     *  @ - player
-     *  0 - enemy trap
-     *  $ - dead player
-     *
-     * */
-
-
-    /**
-     * If you dont know how the game works - don't change any part of code. It can destroy everything.
-     * Enemies and player will spawn automatically at the corners like this, if you will not draw them:
-     *  ######
-     *  #@  x#
-     *  #x  x#
-     *  ######*/
-
-    CMap x("####################################\n"  // U can create ur own map
-           "#     ##                           #\n"
-           "#            ###########      ##   #\n"
-           "##  ####     #         #   ######  #\n"
-           "#            #  #xxx#  #           #\n"
-           "##########   #  #####  #  ##########\n"
-           "#                                  #\n"
-           "#            ###########     #     #\n"
-           "#  ########  #    @    #  #######  #\n"
-           "#                 #                #\n"
-           "####################################\n");
-
-    /**If you'll find bugs - report it please*/
-
-
-    //x.spawnEnemy(5, 5, 2);
-
     x.print();
     while (true) {
         char a;

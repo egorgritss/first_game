@@ -23,7 +23,7 @@
 
 using namespace std;
 
-/** WARNING, THIS IS A GAME ENGINE. DO NOT TOUCH, IF YOU DON'T KNOW HOW IT WORKS*/
+/** WARNING, THIS IS A GAME ENGINE. DO NOT TOUCH, IF YPU DON'T KNOW HOW IT WORKS*/
 /**#############################################################################*/
 enum {
     UP, RIGHT, DOWN, LEFT
@@ -54,15 +54,46 @@ public:
 class CMap {
 
 public:
+
+
     CMap(const string &x) {
         int i = 0;
+        int size = x.size();
+        bool playerFlag=false;
+        int playerX;
+        int playerY;
         while (true) {
-            int size = x.size();
+            bool flag = false;
+            vector<int> enemyPos;
             string tmp;
-            for (; x[i] != '\n'; ++i) {
+            for (int j = 0; x[i] != '\n'; ++i, ++j) {
+                if (x[i] == 'x') {
+                    flag = true;
+                    enemyPos.push_back(j);
+                }
+                if(x[i] == '@'){
+                    playerFlag=true;
+                    playerX=j;
+                    playerY=map.size();
+                }
+
+
                 tmp.push_back(x[i]);
             }
+
             map.push_back(tmp);
+            if (flag == true) {
+                while(!enemyPos.empty()){
+                    enemy.push_back(CEnemy(enemyPos.back(), map.size() - 1));
+                    enemyPos.pop_back();
+                }
+
+            }
+            if(playerFlag){
+                player.x=playerX;
+                player.y=playerY;
+            }
+
             i++;
             if (i == size)
                 break;
@@ -73,17 +104,21 @@ public:
         xSize = X;
         ySize = Y;
 
-        //Here you can add more enemies. setEnemy(x,y) - will place enemy on {x,y} coordinates at the map
+        //Here u can add more enemies. setEnemy(x,y) - will place enemy on {x,y} coordinates at the map
         //enemy.push_back(CEnemy(x, y)) - will create an enemy and add it to the enemies list. Do not write it, if you dont want enemy to move
 
-        setEnemy(X - 2, Y - 2);
-        enemy.push_back(CEnemy(X - 2, Y - 2));
-        setEnemy(X - 2, 1);
-        enemy.push_back(CEnemy(X - 2, 1));
-        setEnemy(1, Y - 2);
-        enemy.push_back(CEnemy(1, Y - 2));
+        if (enemy.empty()) {
+            setEnemy(X - 2, Y - 2);
+            enemy.push_back(CEnemy(X - 2, Y - 2));
+            setEnemy(X - 2, 1);
+            enemy.push_back(CEnemy(X - 2, 1));
+            setEnemy(1, Y - 2);
+            enemy.push_back(CEnemy(1, Y - 2));
+        }
 
-        setPlayer();
+
+        if(!playerFlag)
+            setPlayer();
     }
 
 
@@ -123,11 +158,11 @@ public:
     }
 
     void spawnEnemy(int x, int y, int pos) {
-        int size = enemy.size()-1;
+        int size = enemy.size() - 1;
 
-        int xOld=enemy[pos].x;
-        int yOld=enemy[pos].y;
-        if (pos> size || pos < 0)
+        int xOld = enemy[pos].x;
+        int yOld = enemy[pos].y;
+        if (pos > size || pos < 0)
             return;
 
         if (setEnemy(x, y, pos))
@@ -394,22 +429,57 @@ private:
 
 int main(void) {
 
+    // x.spawnEnemy(int x, int y, int enemy_number) (where x is an instance of CMap class) - spawns an enemy number "enemy_number" in {x,y} if it's legal. !!! USING THIS METHOD YOU HAVE TO BE SURE, ENEMY WITH "enemy_number" EXISTS !!!. Leave it commented if u want to spawn enemy at default position.
+
+    /**Enemies amount can be changed in CMap constructor. By default amount is 3.
+     *
+     * Controls: WASD
+     * W - move up
+     * A - move left
+     * S - move down
+     * D - move right
+     * Q - quit
+     * ENTER - submit turn
+     *
+     *
+     * Game goal:
+     *
+     *  U need to force all enemies eat to "0". If enemy will eat "0", it will turn into border(#). Player can also eat "0", it will give no effect.
+     *
+     *
+     *  # - border
+     *  x - enemy
+     *  @ - player
+     *  0 - enemy trap
+     *  $ - dead player
+     *
+     * */
+
+
+    /**
+     * If you dont know how the game works - don't change any part of code. It can destroy everything.
+     * Enemies and player will spawn automatically at the corners like this, if you will not draw them:
+     *  ######
+     *  #@  x#
+     *  #x  x#
+     *  ######*/
+
     CMap x("####################################\n"  // U can create ur own map
+           "#     ##                           #\n"
+           "#            ###########      ##   #\n"
+           "##  ####     #         #   ######  #\n"
+           "#            #  #xxx#  #           #\n"
+           "##########   #  #####  #  ##########\n"
            "#                                  #\n"
-           "#                   ##             #\n"
-           "#                   #0             #\n"
-           "#                   ##             #\n"
-           "#          ##                      #\n"
-           "#          0#                      #\n"
-           "#          ##         ###          #\n"
-           "#                     #0#          #\n"
-           "#                                  #\n"
+           "#            ###########     #     #\n"
+           "#  ########  #    @    #  #######  #\n"
+           "#                 #                #\n"
            "####################################\n");
-    // x.spawnEnemy(int x, int y, int enemy_number) (where x is an instance of CMap class) - spawns an enemy number "enemy_number" in {x,y} if it's legal. !!! USING THIS METHOD YOU HAVE TO BE SURE, ENEMY WITH "enemy_number" EXISTS !!!. 
-    //Leave it commented if you want to spawn enemy at default position.
 
     /**If you'll find bugs - report it please*/
 
+
+    //x.spawnEnemy(5, 5, 2);
 
     x.print();
     while (true) {
@@ -451,4 +521,5 @@ int main(void) {
 
     }
 }
+
 

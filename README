@@ -22,9 +22,9 @@ Enemies amount can be changed in CMap constructor. By default amount is 3.
      
      
 
-     In this version u can't draw enemies or players at map. It will give no effect, but can cause some bugs. Map should contain only borders(#) and ' ' .
+     In this version you can draw enemies and players at the map.
      If you dont know how the game works - don't change any part of code. It can destroy everything.
-     Enemies and player will spawn automatically at the corners like this:
+     Enemies and player will spawn automatically by default at the corners like this:
       ######
       #@  x#
       #x  x#
@@ -36,12 +36,12 @@ Enemies amount can be changed in CMap constructor. By default amount is 3.
       CMap x("####################################\n"  
              "#                                  #\n"
              "#                   ##             #\n"
-             "#                   #0             #\n"
+             "#         @         #0   x         #\n"
              "#                   ##             #\n"
              "#          ##                      #\n"
-             "#          0#                      #\n"
+             "#          0#    x                 #\n"
              "#          ##         ###          #\n"
-             "#                     #0#          #\n"
+             "#    x                #0#          #\n"
              "#                                  #\n"
              "####################################\n");
 

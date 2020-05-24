@@ -122,41 +122,6 @@ public:
     }
 
 
-    CMap(int x, int y) {
-
-        xSize = x;
-        ySize = y;
-        string border;
-        string playZone;
-
-        for (int i = 0; i < x; ++i) {
-            if (i == 0 || i == x - 1)
-                playZone.push_back('#');
-            else
-                playZone.push_back(' ');
-        }
-        for (int i = 0; i < x; ++i) {
-            border.push_back('#');
-        }
-
-
-        for (int i = 0; i < y; ++i) {
-            if (i == 0 || i == y - 1) {
-                map.push_back(border);
-            } else {
-                map.push_back(playZone);
-            }
-        }
-        setPlayer();
-        setEnemy(x - 2, y - 2);
-        enemy.push_back(CEnemy(x - 2, y - 2));
-        setEnemy(x - 2, 1);
-        enemy.push_back(CEnemy(x - 2, 1));
-        setEnemy(1, y - 2);
-        enemy.push_back(CEnemy(1, y - 2));
-
-    }
-
     void spawnEnemy(int x, int y, int pos) {
         int size = enemy.size() - 1;
 
